@@ -55,6 +55,7 @@ jobs:
         run: |
           git config --global user.email "mmoumini@student.42.fr"
           git config --global user.name "Moustoifa Moumini"
+          npm version patch
           git add package.json
           git commit -m "Bump version for release"
           git push
