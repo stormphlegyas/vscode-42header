@@ -36,6 +36,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '18.x'
+      - name: Install dependencies
+        run: npm install
       - name: Install vsce tool
         run: npm install -g vsce
       - name: Publish to Marketplace
