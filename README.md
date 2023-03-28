@@ -4,13 +4,13 @@
 
 # 42 Header V2 for VSCode
 
-This extension provides the 42 header integration in VS Code.
+This extension integrates the 42 header in VS Code to easily include it in your source code files.
 
 ```bash
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    vscode-42header                                    :+:      :+:    :+:    #
+#    vscode-42headerV2                                  :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mmoumini <mmoumini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -22,9 +22,10 @@ This extension provides the 42 header integration in VS Code.
 
 ## Install
 
-Launch Quick Open with <kbd>⌘</kbd>+<kbd>P</kbd> and enter
+You can install the extension by searching for "42header V2" in the VS Code Extensions Marketplace or by launching Quick Open with <kbd>⌘</kbd>+<kbd>P</kbd> and entering the command:
+
 ```
-ext install 42header
+ext install 42headerV2
 ```
 
 ## Usage
@@ -33,14 +34,12 @@ ext install 42header
  - **macOS** : <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>H</kbd>
  - **Linux** / **Windows** : <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>H</kbd>.
 
-Header is automatically updated on save.
+The header will be automatically updated on save.
 
 
 ## Configuration
 
-Default values for **username** and **email** are imported from environment variables.
-
-To override these values, specify these properties in *User Settings* :
+By default, the extension will import your **username** and **email** from environment variables. However, you can override these values by specifying them in your *User Settings*:
 
 ```ts
 {
@@ -49,6 +48,52 @@ To override these values, specify these properties in *User Settings* :
 }
 ```
 
+## Supported Languages
+
+This extension supports a wide range of programming languages. For each language, it uses a specific delimiter to create the header. Here's a list of the supported languages and their respective delimiters:
+
+- C
+- C++
+- CoffeeScript
+- CSS
+- Dockerfile
+- F#
+- Go
+- Groovy
+- Haskell
+- HTML
+- INI
+- Jade
+- Java
+- JavaScript
+- JavaScript React
+- Kotlin
+- LaTeX
+- Less
+- Lua
+- Makefile
+- Objective-C
+- OCaml
+- Perl
+- Perl6
+- PHP
+- Plaintext
+- PowerShell
+- Python
+- R
+- Ruby
+- Rust
+- SASS
+- SCSS
+- ShellScript
+- Solidity
+- SQL
+- Swift
+- TypeScript
+- TypeScript React
+- Vue
+- XSL
+- YAML
 
 ## Issues
 
