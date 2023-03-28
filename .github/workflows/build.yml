@@ -35,7 +35,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: '18.x'
+          node-version: 18.x
       - name: Install dependencies
         run: npm install
       - name: Install vsce tool
@@ -51,10 +51,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Push changes to branch
+      - name: Configure Git
         run: |
           git config --global user.email "mmoumini@student.42.fr"
           git config --global user.name "Moustoifa Moumini"
-          git add package.json
-          git commit -m "Bump version for release"
-          git push
+      - name: Increment version
+        run: npm version patch --save
+      - name: Push changes to branch
+        run: git push origin master
