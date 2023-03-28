@@ -51,11 +51,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Push changes to branch
-        run: |
+      - name: Configure Git
+        run:
           git config --global user.email "mmoumini@student.42.fr"
           git config --global user.name "Moustoifa Moumini"
-          npm version patch
-          git add package.json
-          git commit -m "Bump version for release"
-          git push
+      - name: Increment version
+        run: npm version patch --save
+      - name: Push changes to branch
+        run: git push origin master
