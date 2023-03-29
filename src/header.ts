@@ -43,7 +43,10 @@ const genericTemplate = `
  */
 
 const getTemplate = (languageId: string) => {
-  const [topLeft, topRight, left, right, bottomLeft, bottomRight] = languageDelimiters[languageId];
+
+  const isAssembly = /(?:asm|assembly)/i.test(languageId) && supportsLanguage(languageId) == false;
+  
+  const [topLeft, topRight, left, right, bottomLeft, bottomRight] = isAssembly ? languageDelimiters["asm"] : languageDelimiters[languageId];
 
   return genericTemplate
     .split('\n')

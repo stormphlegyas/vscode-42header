@@ -22,7 +22,7 @@ This extension integrates the 42 header in VS Code to easily include it in your 
 
 ## Install
 
-You can install the extension by searching for "42header V2" in the VS Code Extensions Marketplace or by launching Quick Open with <kbd>⌘</kbd>+<kbd>P</kbd> and entering the command:
+You can install the extension by searching for "42headerV2" in the VS Code Extensions Marketplace or by launching Quick Open with <kbd>⌘</kbd>+<kbd>P</kbd> and entering the command:
 
 ```
 ext install 42headerV2
@@ -50,8 +50,9 @@ By default, the extension will import your **username** and **email** from envir
 
 ## Supported Languages
 
-This extension supports a wide range of programming languages. For each language, it uses a specific delimiter to create the header. Here's a list of the supported languages and their respective delimiters:
+This extension supports a wide range of programming languages. For each language, it uses a specific delimiter to create the header. Here's a list of the supported languages:
 
+- Assembly Language
 - C
 - C++
 - CoffeeScript
