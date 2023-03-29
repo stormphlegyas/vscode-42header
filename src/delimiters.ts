@@ -17,6 +17,7 @@ const percents = ['%% ', ' %%', '%%', '%%', '%% ', ' %%']
 const angleBrackets = ['<!-- ', '*', '*', '*', '*', ' -->']
 
 export const languageDelimiters: { [lang: string]: string[] | undefined } = {
+  'asm': semicolons,
   'c': slashes,
   'coffeescript': hashes,
   'cpp': slashes,
