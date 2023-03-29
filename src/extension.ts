@@ -66,7 +66,9 @@ const insertHeaderHandler = () => {
   const { activeTextEditor } = vscode.window
   const { document } = activeTextEditor
 
-  if (supportsLanguage(document.languageId))
+  const isAssembly = /(?:asm|assembly)/i.test(document.languageId);
+
+  if (supportsLanguage(document.languageId) || isAssembly)
     activeTextEditor.edit(editor => {
       const currentHeader = extractHeader(document.getText())
 
