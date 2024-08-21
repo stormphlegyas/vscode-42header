@@ -92,6 +92,7 @@ This extension supports a wide range of programming languages. For each language
 - Swift
 - TypeScript
 - TypeScript React
+- Verse
 - Vue
 - XSL
 - YAML
