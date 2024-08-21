@@ -15,6 +15,7 @@ const parens = ['(* ', ' *)', '(*', '*)', '(* ', ' *)']
 const dashes = ['-- ', ' --', '--', '--', '-- ', ' --']
 const percents = ['%% ', ' %%', '%%', '%%', '%% ', ' %%']
 const angleBrackets = ['<!-- ', '*', '*', '*', '*', ' -->']
+const blockCommentDelimiters = ['<# ', ' #>', '<#', '#>', '<# ', ' #>']
 
 export const languageDelimiters: { [lang: string]: string[] | undefined } = {
   'asm': semicolons,
@@ -57,6 +58,7 @@ export const languageDelimiters: { [lang: string]: string[] | undefined } = {
   'swift': slashes,
   'typescript': slashes,
   'typescriptreact': slashes,
+  'verse': blockCommentDelimiters,
   'vue': angleBrackets,
   'xsl': slashes,
   'yaml': hashes,
