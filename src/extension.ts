@@ -29,11 +29,11 @@ const getCurrentUser = () =>
     .get('42header.username') || process.env['USER'] || 'marvin'
 
 /**
- * Return current user mail from config or default value
+ * Return current user mail from config, ENV or default value
  */
 const getCurrentUserMail = () =>
   vscode.workspace.getConfiguration()
-    .get('42header.email') || `${getCurrentUser()}@student.42.fr`
+    .get('42header.email') || process.env['EMAIL'] || `${getCurrentUser()}@student.42.fr`
 
 /**
  * Update HeaderInfo with last update author and date, and update filename

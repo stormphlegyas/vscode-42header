@@ -31,6 +31,25 @@ suite('Extension Test Suite', () => {
     fs.unlinkSync(tempFile);
   });
 
+  test('Insert header with email from EMAIL environment variable', async () => {
+    const tempFile = createTempCppFile();
+    const config = vscode.workspace.getConfiguration('42header', null);
+    const previousEmail = config.get('email');
+    await config.update('email', undefined, true);
+    process.env['EMAIL'] = 'env.user@example.com';
+
+    try {
+      await insertHeader(tempFile);
+      const lines = readFileContent(tempFile).split(os.EOL);
+
+      assert(lines[5].includes('<env.user@example.com>'), lines[5]);
+    } finally {
+      delete process.env['EMAIL'];
+      await config.update('email', previousEmail, true);
+      fs.unlinkSync(tempFile);
+    }
+  });
+
   test('Insert header on Cpp file', async () => {
     const tempFile = createTempCppFile();
 
@@ -117,6 +136,26 @@ suite('Extension Test Suite', () => {
 
   test('Insert header on Lua file', async () => {
     const tempFile = createTempLuaFile();
+    await insertHeader(tempFile);
+    const content = readFileContent(tempFile);
+
+    const expectedHeaderStart = '-- ************************************************************************** --';
+    const expectedHeaderEnd = '-- ************************************************************************** --';
+    const lines = content.split(os.EOL);
+    const updateLine = lines[8];
+
+    assert.strictEqual(lines[0], expectedHeaderStart);
+    assert.strictEqual(lines[lines.length - 3], expectedHeaderEnd);
+    await sleep(1000);
+    await editFile(tempFile);
+
+    assert.notEqual(readFileContent(tempFile).split(os.EOL)[8], updateLine);
+
+    fs.unlinkSync(tempFile);
+  });
+
+  test('Insert header on SQL file', async () => {
+    const tempFile = createTempSqlFile();
     await insertHeader(tempFile);
     const content = readFileContent(tempFile);
 
@@ -258,6 +297,12 @@ function createTempIniFile() {
 
 function createTempLuaFile() {
   const tmpFile = path.join(__dirname, `temp-${Date.now()}.lua`);
+  fs.writeFileSync(tmpFile, '');
+  return tmpFile;
+}
+
+function createTempSqlFile() {
+  const tmpFile = path.join(__dirname, `temp-${Date.now()}.sql`);
   fs.writeFileSync(tmpFile, '');
   return tmpFile;
 }
