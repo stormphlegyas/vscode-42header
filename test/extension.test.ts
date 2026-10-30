@@ -37,8 +37,8 @@ suite('Extension Test Suite', () => {
     await insertHeader(tempFile);
     const content = readFileContent(tempFile);
 
-    const expectedHeaderStart = '/******************************************************************************/';
-    const expectedHeaderEnd = '/******************************************************************************/';
+    const expectedHeaderStart = '/* ************************************************************************** */';
+    const expectedHeaderEnd = '/* ************************************************************************** */';
     const lines = content.split(os.EOL);
     const updateLine = lines[8];
 
@@ -203,6 +203,7 @@ suite('Extension Test Suite', () => {
     const lines = readFileContent(tempFile).split(/\r?\n/);
 
     lines.slice(0, 11).forEach(line => assert.strictEqual(line.length, 80, line));
+    assert.strictEqual(lines[0], '/* ************************************************************************** */');
     assert(lines[7].includes(`Created: 2024/01/02 03:04:05 by ${user.slice(0, 11)}`), lines[7]);
     assert(lines.includes('int main() {}'), 'Code after the header was removed');
 
