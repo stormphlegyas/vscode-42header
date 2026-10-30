@@ -54,7 +54,7 @@ export const languageDelimiters: { [lang: string]: string[] | undefined } = {
   'scss': slashes,
   'shellscript': hashes,
   'solidity': slashes,
-  'sql': hashes,
+  'sql': dashes,
   'swift': slashes,
   'typescript': slashes,
   'typescriptreact': slashes,

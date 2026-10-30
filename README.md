@@ -39,7 +39,7 @@ The header will be automatically updated on save.
 
 ## Configuration
 
-By default, the extension will import your **username** and **email** from environment variables. However, you can override these values by specifying them in your *User Settings*:
+By default, the extension will use your **username** from the `USER` environment variable and your **email** from the `EMAIL` environment variable, or `<username>@student.42.fr` if it is not set. However, you can override these values by specifying them in your *User Settings*:
 
 ```ts
 {
