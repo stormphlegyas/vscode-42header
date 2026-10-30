@@ -175,6 +175,39 @@ suite('Extension Test Suite', () => {
 
     fs.unlinkSync(tempFile);
   });
+
+  test('Deformed header is repaired on save', async () => {
+    const user = 'moustoifa.moumini.with.a.very.long.login';
+    const tempFile = createTempCppFile();
+    fs.writeFileSync(tempFile, [
+      '/******************************************************************************/',
+      '/*                                                                            */',
+      '/*                                                        :::      ::::::::   */',
+      '/*   main.c                                             :+:      :+:    :+:   */',
+      '/*                                                    +:+ +:+         +:+     */',
+      `/*   By: ${user} <${user}@student.42.fr>                      +#+  +:+       +#+        */`,
+      '/*                                                +#+#+#+#+#+   +#+           */',
+      `/*   Created: 2024/01/02 03:04:05 by ${user}            #+#    #+#             */`,
+      `/*   Updated: 2024/01/02 03:04:05 by ${user}           ###   ########.fr       */`,
+      '/*                                                                            */',
+      '/******************************************************************************/',
+      'int main() {}',
+      ''
+    ].join('\n'));
+
+    const document = await vscode.workspace.openTextDocument(tempFile);
+    const editor = await vscode.window.showTextDocument(document);
+    await editor.edit(editBuilder => editBuilder.insert(document.lineAt(document.lineCount - 1).range.end, '// edit\n'));
+    await document.save();
+
+    const lines = readFileContent(tempFile).split(/\r?\n/);
+
+    lines.slice(0, 11).forEach(line => assert.strictEqual(line.length, 80, line));
+    assert(lines[7].includes(`Created: 2024/01/02 03:04:05 by ${user.slice(0, 11)}`), lines[7]);
+    assert(lines.includes('int main() {}'), 'Code after the header was removed');
+
+    fs.unlinkSync(tempFile);
+  });
 });
 
 async function insertHeader(file: string) {
