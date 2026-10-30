@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: sudo apt-get install xvfb
+      - run: sudo apt-get install -y xvfb
       - run: npm install
       - run: xvfb-run -a npm run test -- --headless
 
@@ -32,15 +32,15 @@ jobs:
       VSCE_PAT: ${{ secrets.VSCE_PAT }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Install dependencies
         run: npm install
       - name: Install vsce tool
-        run: npm install -g vsce
+        run: npm install -g @vscode/vsce
       - name: Publish to Marketplace
         run: vsce publish -p ${{ secrets.VSCE_PAT }}
 
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_PAT }}
       - name: Configure Git
