@@ -49,11 +49,11 @@ jobs:
     needs: deploy
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_PAT }}
       - name: Configure Git
         run: |
           git config --global user.email "mmoumini@student.42.fr"
